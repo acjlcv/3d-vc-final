@@ -10075,7 +10075,7 @@
 [2025-06-12 04:23:54,299::train::INFO] [Test] Coverage  | CD 0.937500 | EMD n/a
 [2025-06-12 04:23:54,299::train::INFO] [Test] MinMatDis | CD 0.044267 | EMD n/a
 [2025-06-12 04:23:54,299::train::INFO] [Test] 1NN-Accur | CD 0.963942 | EMD n/a
-[2025-06-12 04:23:54,299::train::INFO] [Test] JsnShnDis | 0.027220 
+[2025-06-12 04:23:54,299::train::INFO] [Test] JsnShnDis | 0.027220
 [2025-06-12 04:23:54,435::train::INFO] [Train] Iter 10001 | Loss 61.209095 | Grad 1.0398 | KLWeight 0.0010
 [2025-06-12 04:23:54,574::train::INFO] [Train] Iter 10002 | Loss 61.261642 | Grad 1.5426 | KLWeight 0.0010
 [2025-06-12 04:23:54,715::train::INFO] [Train] Iter 10003 | Loss 61.238712 | Grad 1.4572 | KLWeight 0.0010
@@ -20080,4 +20080,4 @@
 [2025-06-12 04:50:32,315::train::INFO] [Test] Coverage  | CD 0.937500 | EMD n/a
 [2025-06-12 04:50:32,315::train::INFO] [Test] MinMatDis | CD 0.045537 | EMD n/a
 [2025-06-12 04:50:32,315::train::INFO] [Test] 1NN-Accur | CD 0.961538 | EMD n/a
-[2025-06-12 04:50:32,315::train::INFO] [Test] JsnShnDis | 0.027903 
+[2025-06-12 04:50:32,315::train::INFO] [Test] JsnShnDis | 0.027903
