@@ -21,7 +21,7 @@ class GaussianVAE(Module):
                 mode=args.sched_mode
             )
         )
-        
+
     def get_loss(self, x, writer=None, it=None, kl_weight=1.0):
         """
         Args:

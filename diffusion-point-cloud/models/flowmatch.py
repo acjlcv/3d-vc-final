@@ -34,10 +34,10 @@ class FlowMatch(Module):
         device = x.device
         batch_size = x.shape[0]
 
-        x0 = torch.rand_like(x).to(device) #src dist at x0 (noise)
+        x0 = torch.randn_like(x).to(device) #src dist at x0 (noise) normal dist
         x1 = x                             #trgt dist at x1 (actual)
 
-        t = torch.rand(batch_size).to(device)
+        t = torch.rand(batch_size).to(device) #uniform dist
         path_sample = self.path.sample(t=t, x_0=x0, x_1=x1)
         v_pred = self.diffusionUnet(path_sample.x_t, path_sample.t, context=context)
         v_star = path_sample.dx_t
@@ -85,11 +85,13 @@ class FlowMatch(Module):
         if truncate_std is not None:
             w = truncated_normal_(w, mean=0, std=1, trunc_std=truncate_std)
 
-        z = self.flow(w).view(batch_size, -1)
+        # Reverse: z <- w.
+        z = self.flow(w, reverse=True).view(batch_size, -1)
         x_init = torch.randn((batch_size, num_points, point_dim), dtype=torch.float32, device=z.device)
         ts = torch.tensor([0.0, 1.0], dtype=torch.float, device=z.device)
 
         tmp_model = WrappedModel(self.diffusionUnet)
         solver = ODESolver(velocity_model=tmp_model)
-        x1 = solver.sample(x_init=x_init, time_grid=ts, step_size=0.10, method="midpoint", return_intermediates=True, context=z, batch_size=batch_size, num_points=num_points, point_dim=point_dim)
+        x1 = solver.sample(x_init=x_init, time_grid=ts, step_size=0.01, method="rk4", return_intermediates=True, context=z)
+
         return x1[-1] #get result at ts=1.0
